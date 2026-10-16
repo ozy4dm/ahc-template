@@ -1,0 +1,12 @@
+{
+  "input_glob": "cases/dev/*.txt",
+  "time_limit_seconds": 2.0,
+  "scorer_time_limit_seconds": 30,
+  "score_direction": "lower",
+  "score_pattern": "Score\\s*=\\s*([0-9]+(?:\\.[0-9]+)?)",
+  "solvers": {
+    "baseline": ["target/release/solver_baseline"],
+    "candidate": ["target/release/solver_candidate"]
+  },
+  "scorer": ["tools/target/release/vis", "{input}", "{output}", "--no-vis"]
+}

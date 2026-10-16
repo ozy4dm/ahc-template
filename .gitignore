@@ -1,0 +1,17 @@
+/target/
+/**/target/
+/config.json
+/reports/experiments/*/
+/reports/experiment_results.csv
+/reports/scoreboard.csv
+/outputs/
+/tools/in/
+/tools/in.zip
+/.claude/settings.local.json
+/CLAUDE.local.md
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+__pycache__/
+*.pyc
