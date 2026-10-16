@@ -6,6 +6,7 @@ AHC の各回で使う実験記録と比較ツールの雛形です。AHC072 で
 
 1. このリポジトリを大会用フォルダへ複製します。
 2. `AGENTS.md` を開催時点の公式な生成 AI 利用ルールと照合し、必要なら全文を更新します。現行ファイルは暫定版です。
+   Claude Code では `CLAUDE.md` が `AGENTS.md` を読み込みます。新しいルールに変わった場合、正本の `AGENTS.md` と Claude 用スキル・プロンプトの整合性を確認してください。
 3. `tools/` にその大会の公式 generator / tester / visualizer を配置します。公式配布物のライセンスと公開条件を確認してください。
 4. `config.example.json` を `config.json` にコピーし、入力、スコアの向き、ソルバーと採点コマンドを設定します。Windows では実行ファイル名に `.exe` を付けます。
 5. 入力を `cases/` の該当する集合へ置き、`docs/experiments/TEMPLATE.md` を複製して評価条件を先に記録します。
@@ -39,3 +40,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/show_experiment_result
 | `tools/` | 比較・集計ツールと大会固有ツール |
 
 AHC072 固有の解法、公式ツール、生成入力、診断用スクリプトは移していません。特に採点式、時間制限、スコアの向きは大会ごとに設定してください。
+
+## Claude Code で使う
+
+リポジトリのルートで Claude Code を起動します。`CLAUDE.md` に共通の作業指示があり、ルール全文は `@AGENTS.md` で読み込まれます。起動後に `/context` で読み込みを確認してください。`.claude/skills/` には `/ahc-setup`、`/ahc-implement`、`/ahc-experiment` の手動スキルを用意しています。記入例は [prompts/README.md](prompts/README.md) にあります。
