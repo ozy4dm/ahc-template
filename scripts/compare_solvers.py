@@ -19,7 +19,13 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def command(parts, input_path, output_path):
-    return [str(part).replace("{input}", str(input_path)).replace("{output}", str(output_path)) for part in parts]
+    args = [str(part).replace("{input}", str(input_path)).replace("{output}", str(output_path)) for part in parts]
+    # Resolve a relative executable path against the repository root. Windows cannot start
+    # a relative path written with "/" (e.g. target/release/solver.exe) on its own.
+    executable = ROOT / args[0]
+    if not Path(args[0]).is_absolute() and executable.is_file():
+        args[0] = str(executable)
+    return args
 
 
 def run_solver(parts, input_path, output_path, timeout):
