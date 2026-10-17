@@ -79,6 +79,14 @@
 
 **確認・変更:** ライセンス文と Git の差分を確認する。この項目のコミットは `git log -- LICENSE README.md docs/design-history.md` で確認できる。GitHub への公開状況は別途確認する。
 
+## 2026-10-17: 問題文と公式配布物の手動取得
+
+**参加者の依頼:** 問題文やテスタは、エージェントに AtCoder へのログインやダウンロードを任せず、参加者が手動で取得する方針とした。問題文 PDF を大会用リポジトリに置く際の場所と Git の除外設定をテンプレートにも反映するよう求めた。
+
+**実装上の選択:** `local/problem.pdf` と `local/official-tools/` を標準の配置先として案内し、`/local/` を Git の管理対象から除外した。比較・集計用の共通スクリプトがある `tools/` とは分け、問題文と公式配布物の誤公開を防ぐため。Claude Code の指示と大会準備スキルにも手動取得の方針を記載した。テンプレートから既に作成した大会用リポジトリには変更が自動反映されないため、個別に同じ除外設定を適用する。
+
+**確認・変更:** `.gitignore` の動作と Git の差分を確認する。この項目のコミットは `git log -- .gitignore README.md docs/user-guide.md CLAUDE.md .claude/skills/ahc-setup/SKILL.md prompts/README.md docs/design-history.md` で確認できる。
+
 ## 今後の記録方法
 
 テンプレートを変更するたびに、この文書へ次の情報を追記します。未確認のことは「未確認」と記し、後から根拠を推測して埋めません。

@@ -9,11 +9,11 @@ AHC の各回で使う実験記録と比較ツールの雛形です。AHC072 で
 1. このリポジトリを大会用フォルダへ複製します。
 2. `AGENTS.md` を開催時点の公式な生成 AI 利用ルールと照合し、必要なら全文を更新します。現行ファイルは暫定版です。
    Claude Code では `CLAUDE.md` が `AGENTS.md` を読み込みます。新しいルールに変わった場合、正本の `AGENTS.md` と Claude 用スキル・プロンプトの整合性を確認してください。
-3. `tools/` にその大会の公式 generator / tester / visualizer を配置します。公式配布物のライセンスと公開条件を確認してください。
+3. 参加者がブラウザで問題文と公式 generator / tester / visualizer を取得し、問題文 PDF は `local/problem.pdf`、公式配布物は `local/official-tools/` に置きます。`local/` は Git の管理対象から除外しています。公式配布物のライセンスと公開条件を確認してください。
 4. `config.example.json` を `config.json` にコピーし、入力、スコアの向き、ソルバーと採点コマンドを設定します。Windows では実行ファイル名に `.exe` を付けます。
 5. 入力を `cases/` の該当する集合へ置き、`docs/experiments/TEMPLATE.md` を複製して評価条件を先に記録します。
 
-`config.json` は大会ごとのローカル設定なので Git の管理対象から外しています。公開時は大会固有の入力、出力、ログ、解法を含めるか個別に確認してください。
+`config.json` と `local/` は大会ごとのローカルファイルなので Git の管理対象から外しています。公開時は大会固有の入力、出力、ログ、解法を含めるか個別に確認してください。
 
 ## 比較実行
 

@@ -1,6 +1,7 @@
 /target/
 /**/target/
 /config.json
+/local/
 /reports/experiments/*/
 /reports/experiment_results.csv
 /reports/scoreboard.csv
