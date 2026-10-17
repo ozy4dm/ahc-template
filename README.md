@@ -37,6 +37,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/show_experiment_result
 | `cases/regression/` | 過去に問題が出たケース |
 | `docs/experiments/` | 実験計画と記録 |
 | `docs/solutions.md` | 解法版の台帳 |
+| `docs/decisions.md` | 参加者が決めた採用・棄却などの判断 |
 | `reports/experiments/` | 実行結果 |
 | `src/bin/` | 大会ごとの解答コード |
 | `tools/` | 比較・集計ツールと大会固有ツール |

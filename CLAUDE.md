@@ -9,6 +9,7 @@
 - `README.md`: 構成とツールの設定方法
 - `docs/workflow.md`: 実験の記録方法
 - `docs/solutions.md`: 解法版の台帳
+- `docs/decisions.md`: 参加者が決めた採用・棄却などの判断
 - `docs/design-history.md`: テンプレートの設計・変更の経緯
 - 作業対象の `docs/experiments/EXP-*.md`: 人間が指定した実験条件
 

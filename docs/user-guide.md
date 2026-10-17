@@ -34,7 +34,7 @@ Python 3 が比較・スコアボードに必要です。実験一覧の表示�
 
 ## 4. 実験を計画・実行する
 
-1. 参加者が比較対象、ケース集合、seed、反復回数、時間制限、スコアの向き、採用基準を決めます。
+1. 参加者が比較対象、ケース集合、seed、反復回数、時間制限、スコアの向き、採用基準を決めます。重要な判断は `docs/decisions.md` に記録します。
 2. `docs/experiments/TEMPLATE.md` を `EXP-001-内容.md` のように複製し、**実行前**に条件を記入します。解法版は `docs/solutions.md` に記録します。
 3. ケースの入力を `cases/dev/` などへ置き、`config.json` の `input_glob` を固定します。
 4. ソルバーと公式採点ツールを準備してから、比較を実行します。
@@ -59,5 +59,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/show_experiment_result
 ## 6. 公開とログ保存
 
 テンプレートの Git 履歴は、設計や変更の経緯を追うためのものです。大会参加時の生成 AI 利用ログの代わりにはなりません。適用されるルールに従い、Claude Code を含む各 AI との対話と取得可能な作業ログを、提出可能な形で別途保存してください。公開前には、生成入力、解答出力、実験結果、認証情報、個人情報、公式配布物の扱いを確認します。
+
+Claude Code の CLI には、現在の会話をテキストへ書き出す [`/export`](https://code.claude.com/docs/en/commands) があります。大会開始前に試験セッションで書き出しを行い、必要な入力・応答・取得可能なツール履歴をどこまで保存できるか確認してください。`/export` だけで提出対象を網羅するとは想定しません。
 
 Claude Code で使う定型依頼文は [`prompts/README.md`](../prompts/README.md) にあります。テンプレート自体の設計・変更の記録は [`docs/design-history.md`](design-history.md) を参照してください。
