@@ -9,6 +9,7 @@
 - `README.md`: 構成とツールの設定方法
 - `docs/workflow.md`: 実験の記録方法
 - `docs/solutions.md`: 解法版の台帳
+- `docs/design-history.md`: テンプレートの設計・変更の経緯
 - 作業対象の `docs/experiments/EXP-*.md`: 人間が指定した実験条件
 
 ## 作業の境界
@@ -27,5 +28,6 @@
 - 実験記録は `docs/experiments/TEMPLATE.md` を複製して作る。
 - 比較ツールの引数とスコア形式は `README.md` に従う。コマンドやビルド環境は大会ごとに確認する。
 - 最後に変更ファイルと実施した確認を報告する。
+- テンプレートの共通構成を変更したときは `docs/design-history.md` に、依頼、実装上の選択、確認、未確認事項を追記する。参加者が指定していない解法上の判断を、参加者の決定として書かない。
 
 定型作業と依頼文の事前確認には `.claude/skills/` の手動スキルを使える。入力例は `prompts/README.md` を参照する。
