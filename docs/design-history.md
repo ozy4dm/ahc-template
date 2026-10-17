@@ -17,7 +17,7 @@
 |---|---|---|
 | AI 利用ルール | 全文と AI 向け必須指示を `AGENTS.md` に置き、Claude Code から読み込む。更新時に本文の二重管理を避けるため | `AGENTS.md`、`CLAUDE.md` |
 | 依頼文の点検 | 普段の作業前確認に加え、任意の文面を点検する手動スキルを置く。依頼文だけで参加者の違反は断定しないため | `.claude/skills/ahc-rule-check/SKILL.md` |
-| 比較・集計 | 入力集合、コマンド、スコアの向きを大会ごとに設定できる形にする。AHC072 固有の診断値を持ち込まないため | `config.example.json`、`tools/` |
+| 比較・集計 | 入力集合、コマンド、スコアの向きを大会ごとに設定できる形にする。AHC072 固有の診断値を持ち込まないため | `config.example.json`、`scripts/` |
 | 結果とログ | 比較結果はローカルに保存し、テンプレートの Git 履歴とは分ける。大会の AI 利用ログは別途保存するため | `.gitignore`、`docs/user-guide.md` |
 
 ## 現在の未確認事項
@@ -86,6 +86,14 @@
 **実装上の選択:** `local/problem.pdf` と `local/official-tools/` を標準の配置先として案内し、`/local/` を Git の管理対象から除外した。比較・集計用の共通スクリプトがある `tools/` とは分け、問題文と公式配布物の誤公開を防ぐため。Claude Code の指示と大会準備スキルにも手動取得の方針を記載した。テンプレートから既に作成した大会用リポジトリには変更が自動反映されないため、個別に同じ除外設定を適用する。
 
 **確認・変更:** `.gitignore` の動作と Git の差分を確認する。この項目のコミットは `git log -- .gitignore README.md docs/user-guide.md CLAUDE.md .claude/skills/ahc-setup/SKILL.md prompts/README.md docs/design-history.md` で確認できる。
+
+## 2026-10-17: 共通スクリプトと公式ツールの分離
+
+**参加者の依頼:** 公式ツールは `tools/` に置き、テンプレートで作ったスクリプトは `scripts/` に移す。公式配布物を含む `tools/` 全体を Git から除外する構成を選んだ。
+
+**実装上の選択:** 共通スクリプト3本を `scripts/` へ移し、実行例と Claude Code の指示・準備プロンプトを更新した。`/tools/` を Git から除外し、問題文用の `/local/` の除外は維持した。前節の `local/official-tools/` という配置案は、この変更で置き換えた。
+
+**確認・変更:** スクリプトの参照先、Git の除外動作、差分を確認する。この項目のコミットは `git log -- .gitignore scripts README.md docs/user-guide.md CLAUDE.md .claude/skills/ahc-setup/SKILL.md prompts/README.md docs/design-history.md` で確認できる。
 
 ## 今後の記録方法
 

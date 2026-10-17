@@ -4,7 +4,7 @@
 
 ## 1. 大会用の作業場所を作る
 
-このリポジトリを大会ごとに別のフォルダへ複製します。テンプレートそのものに大会固有の解法や実験結果を混ぜないようにします。`src/bin/` に解答コード、`cases/` に入力を置く想定です。問題文や公式ツールは参加者がブラウザで手動取得し、問題文 PDF は `local/problem.pdf`、公式ツールは `local/official-tools/` に置きます。`local/` は Git の管理対象から除外されています。取得元 URL と取得日を別途記録し、各配布物の公開条件を確認してください。
+このリポジトリを大会ごとに別のフォルダへ複製します。テンプレートそのものに大会固有の解法や実験結果を混ぜないようにします。`src/bin/` に解答コード、`cases/` に入力を置く想定です。問題文や公式ツールは参加者がブラウザで手動取得し、問題文 PDF は `local/problem.pdf`、公式ツールは `tools/` に置きます。共通スクリプトは `scripts/` にあります。`local/` と `tools/` は Git の管理対象から除外されています。取得元 URL と取得日を別途記録し、各配布物の公開条件を確認してください。
 
 Python 3 が比較・スコアボードに必要です。実験一覧の表示は PowerShell スクリプトです。Rust は、この雛形を Rust 解答コードと Rust 製公式ツールで使う場合に必要です。これらのインストール方法やバージョンは大会・利用環境に合わせて確認してください。
 
@@ -30,7 +30,7 @@ Python 3 が比較・スコアボードに必要です。実験一覧の表示�
 
 コマンドは文字列の配列で指定します。ソルバーは入力を標準入力から受け、標準出力へ解答を書きます。相対パスはリポジトリのルートから解決されます。Windows の実行ファイルには `.exe` を付けてください。採点結果の表示形式は大会ごとに異なるため、`score_pattern` は公式ツールの実際の出力で確認します。
 
-公式 generator・tester・visualizer の配置、ソルバーのビルド、入力生成はこの雛形では自動化していません。`local/official-tools/` に置いた公式ツールを使うコマンドは大会ごとに用意します。
+公式 generator・tester・visualizer の配置、ソルバーのビルド、入力生成はこの雛形では自動化していません。`tools/` に置いた公式ツールを使うコマンドは大会ごとに用意します。
 
 ## 4. 実験を計画・実行する
 
@@ -40,7 +40,7 @@ Python 3 が比較・スコアボードに必要です。実験一覧の表示�
 4. ソルバーと公式採点ツールを準備してから、比較を実行します。
 
 ```text
-python tools/compare_solvers.py EXP-001 baseline candidate
+python scripts/compare_solvers.py EXP-001 baseline candidate
 ```
 
 結果は `reports/experiments/EXP-001/cases.csv` と `summary.json` に保存されます。同じ実験 ID のディレクトリがあると上書きを拒否します。途中で失敗した場合、完了済みケースを `cases.partial.csv` に残す場合があります。実験記録の「結果」「観察事項」は、保存された事実に基づいて記入します。結果から解法の改善方針を AI に考案させません。
@@ -50,8 +50,8 @@ python tools/compare_solvers.py EXP-001 baseline candidate
 ## 5. 保存済み結果を見る
 
 ```text
-python tools/show_scoreboard.py --direction lower
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/show_experiment_results.ps1
+python scripts/show_scoreboard.py --direction lower
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/show_experiment_results.ps1
 ```
 
 スコアボードの `--direction` は実験時の向きと合わせます。同一ソルバー・ケースに複数の成功結果があれば最良値を使い、全ケースの結果がそろった版だけを表示します。これは記録済みスコアの機械的な相対表示であり、解法の採用判断ではありません。実験一覧は `docs/experiments/EXP-*.md` を読み、`reports/experiment_results.csv` を更新します。

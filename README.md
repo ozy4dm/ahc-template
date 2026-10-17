@@ -9,20 +9,20 @@ AHC の各回で使う実験記録と比較ツールの雛形です。AHC072 で
 1. このリポジトリを大会用フォルダへ複製します。
 2. `AGENTS.md` を開催時点の公式な生成 AI 利用ルールと照合し、必要なら全文を更新します。現行ファイルは暫定版です。
    Claude Code では `CLAUDE.md` が `AGENTS.md` を読み込みます。新しいルールに変わった場合、正本の `AGENTS.md` と Claude 用スキル・プロンプトの整合性を確認してください。
-3. 参加者がブラウザで問題文と公式 generator / tester / visualizer を取得し、問題文 PDF は `local/problem.pdf`、公式配布物は `local/official-tools/` に置きます。`local/` は Git の管理対象から除外しています。公式配布物のライセンスと公開条件を確認してください。
+3. 参加者がブラウザで問題文と公式 generator / tester / visualizer を取得し、問題文 PDF は `local/problem.pdf`、公式ツールは `tools/` に置きます。両ディレクトリは Git の管理対象から除外しています。公式配布物のライセンスと公開条件を確認してください。
 4. `config.example.json` を `config.json` にコピーし、入力、スコアの向き、ソルバーと採点コマンドを設定します。Windows では実行ファイル名に `.exe` を付けます。
 5. 入力を `cases/` の該当する集合へ置き、`docs/experiments/TEMPLATE.md` を複製して評価条件を先に記録します。
 
-`config.json` と `local/` は大会ごとのローカルファイルなので Git の管理対象から外しています。公開時は大会固有の入力、出力、ログ、解法を含めるか個別に確認してください。
+`config.json`、`local/`、`tools/` は大会ごとのローカルファイルなので Git の管理対象から外しています。共通の比較・集計スクリプトは `scripts/` にあります。公開時は大会固有の入力、出力、ログ、解法を含めるか個別に確認してください。
 
 ## 比較実行
 
 `config.json` の `solvers` と `scorer` はコマンドを文字列配列で指定します。ソルバーは入力を標準入力で受け取り、出力を標準出力へ書きます。採点コマンドの `{input}` と `{output}` はファイルパスに置換され、`score_pattern` の最初の括弧グループから数値を読み取ります。コマンドはシェルを通さず実行されます。
 
 ```text
-python tools/compare_solvers.py EXP-001 baseline candidate
-python tools/show_scoreboard.py --direction lower
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/show_experiment_results.ps1
+python scripts/compare_solvers.py EXP-001 baseline candidate
+python scripts/show_scoreboard.py --direction lower
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/show_experiment_results.ps1
 ```
 
 比較結果は `reports/experiments/EXP-xxx/` に保存されます。同じ ID の結果は上書きしません。`show_scoreboard.py` は全ケースが揃った版だけを順位表へ載せます。比較や順位表は機械的な集計のみ行い、採用判断は行いません。
@@ -40,7 +40,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/show_experiment_result
 | `docs/decisions.md` | 参加者が決めた採用・棄却などの判断 |
 | `reports/experiments/` | 実行結果 |
 | `src/bin/` | 大会ごとの解答コード |
-| `tools/` | 比較・集計ツールと大会固有ツール |
+| `scripts/` | 共通の比較・集計スクリプト |
+| `tools/` | 手動取得した大会公式ツール（Git 管理対象外） |
 
 AHC072 固有の解法、公式ツール、生成入力、診断用スクリプトは移していません。特に採点式、時間制限、スコアの向きは大会ごとに設定してください。
 

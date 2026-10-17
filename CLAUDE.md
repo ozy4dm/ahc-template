@@ -25,7 +25,7 @@
 
 ## リポジトリの使い方
 
-- 参加者が手動で取得した問題文は `local/problem.pdf`、大会固有の公式ツールは `local/official-tools/` に置き、`config.example.json` からローカルの `config.json` を作る。`local/` は Git の管理対象から除外する。
+- 参加者が手動で取得した問題文は `local/problem.pdf`、大会固有の公式ツールは `tools/` に置き、`config.example.json` からローカルの `config.json` を作る。`local/` と `tools/` は Git の管理対象から除外する。共通スクリプトは `scripts/` にある。
 - 入力は `cases/` に、解答コードは `src/bin/` に置く。
 - 実験記録は `docs/experiments/TEMPLATE.md` を複製して作る。
 - 比較ツールの引数とスコア形式は `README.md` に従う。コマンドやビルド環境は大会ごとに確認する。
