@@ -43,4 +43,6 @@ AHC072 固有の解法、公式ツール、生成入力、診断用スクリプ�
 
 ## Claude Code で使う
 
-リポジトリのルートで Claude Code を起動します。`CLAUDE.md` に共通の作業指示があり、ルール全文は `@AGENTS.md` で読み込まれます。起動後に `/context` で読み込みを確認してください。`.claude/skills/` には `/ahc-setup`、`/ahc-implement`、`/ahc-experiment` の手動スキルを用意しています。記入例は [prompts/README.md](prompts/README.md) にあります。
+リポジトリのルートで Claude Code を起動します。`CLAUDE.md` に共通の作業指示があり、ルール全文は `@AGENTS.md` で読み込まれます。起動後に `/context` で読み込みを確認してください。`.claude/skills/` には `/ahc-setup`、`/ahc-implement`、`/ahc-experiment` と、依頼文を実行せずに点検する `/ahc-rule-check` の手動スキルを用意しています。記入例は [prompts/README.md](prompts/README.md) にあります。
+
+`/ahc-rule-check` は事前の補助チェックです。依頼文だけから参加者の意図や最終的な違反の有無までは判定できません。開催時点の正式ルールを確認し、生成 AI との対話・作業ログを保存してください。
